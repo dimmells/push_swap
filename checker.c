@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 11:12:32 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/11 15:04:58 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/11 15:46:17 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,8 @@ int         main(int ac, char **av)
         ft_putstr("OK\n");
     else
         ft_putstr("KO\n");
-    ft_intdel(&stacks.a);
-    ft_intdel(&stacks.b);
+    ft_int_del(&stacks.a);
+    ft_int_del(&stacks.b);
 //  system("leaks a.out");
     return (0);
 }

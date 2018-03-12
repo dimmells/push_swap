@@ -1,0 +1,1 @@
+ARG="7 49 8 30 22 44 28 23 9"; ./a.out $ARG | ./checker $ARG

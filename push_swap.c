@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/12 13:50:45 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/12 16:10:09 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static int  *get_stack(int ac, char **av)
 int			main(int ac, char **av)
 {
 	t_stack	stacks;
+	int		steps;
 
 	stacks.b = (int*)malloc(sizeof(int) * ac - 1);
 	stacks.a = get_stack(ac - 1, av);
@@ -67,6 +68,7 @@ int			main(int ac, char **av)
 //		shift_down(&stacks.a, stacks.size_a);
 //		ft_putendl("rra");
 //	}
+	steps = 0;
 	while (stacks.size_a > 0)
 	{
 		if (stacks.size_a > 1 && stacks.a[0] > stacks.a[1])
@@ -74,8 +76,31 @@ int			main(int ac, char **av)
 			swap_int(&stacks.a[0], &stacks.a[1]);
 			ft_putendl("sa");
 		}
+		if (min_index(stacks.a, stacks.size_a) == stacks.size_a - 1)
+		{
+			shift_down(&stacks.a, stacks.size_a);
+			ft_putendl("rra");
+		}
+		while (1)
+		{
+			if (stacks.a[0] < stacks.b[0] && stacks.a[0] > stacks.b[stacks.size_b - 1])
+			{
+//				printf("test %d\n", stacks.a[0]);
+				shift_up(&stacks.b, stacks.size_b);
+				ft_putendl("rb");
+				steps++;
+			}
+			else
+				break ;
+		}
 		push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
 		ft_putendl("pb");
+		while (steps != 0)
+		{
+			shift_down(&stacks.b, stacks.size_b);
+			ft_putendl("rrb");
+			steps--;
+		}
 		if (stacks.size_b > 1)
 		{
 //			printf("size_b=%d\n", stacks.size_b);
@@ -85,7 +110,7 @@ int			main(int ac, char **av)
 //				printf("NUM %d\nSIZE %d\n\n",stacks.b[0], stacks.size_b - 1);
 				if (stacks.b[0] < stacks.b[stacks.size_b - 1])
 				{
-					printf("if\n");
+//					printf("if\n");
 					shift_up(&stacks.b, stacks.size_b);
 					ft_putendl("rb");
 				}

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/14 14:35:19 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/14 14:45:47 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,25 @@ int			main(int ac, char **av)
 	stacks.a = get_stack(ac - 1, av);
 	stacks.size_a = ac - 1;
 	stacks.size_b = 0;
-	is_top_sort(stacks);
 	if (stacks.size_a > 1 && stacks.a[0] > stacks.a[1])
 	{
 		swap_int(&stacks.a[0], &stacks.a[1]);
 		ft_putendl("sa");
 	}
-	while (stacks.size_a > 0)
+	while (!is_sort(stacks))
+	{
+		while (is_top_sort(stacks))
+		{
+				shift_down(&stacks.a, stacks.size_a);
+				ft_putendl("rra");
+		}
+		if (!is_top_sort(stacks))
+		{
+			push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
+			ft_putendl("pb");
+		}
+	}
+/*	while (stacks.size_a > 0)
 	{
 		print_stacks(stacks);
 		if (stacks.size_a > 1 && stacks.a[0] > stacks.a[1])
@@ -96,6 +108,7 @@ int			main(int ac, char **av)
 			}
 		}
 	}
+	*/
 	while (stacks.size_b > 0)
 	{
 		push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/14 14:45:47 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/15 15:28:42 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,16 @@ int			main(int ac, char **av)
 	stacks.a = get_stack(ac - 1, av);
 	stacks.size_a = ac - 1;
 	stacks.size_b = 0;
-	if (stacks.size_a > 1 && stacks.a[0] > stacks.a[1])
+/*	if (stacks.size_a > 1 && stacks.a[0] > stacks.a[1])
 	{
-		swap_int(&stacks.a[0], &stacks.a[1]);
+???		swap_int(&stacks.a[0], &stacks.a[1]);
 		ft_putendl("sa");
 	}
-	while (!is_sort(stacks))
+*/
+	while (!is_stacks_sort(stacks))
 	{
-		while (is_top_sort(stacks))
+//		print_stacks(stacks);
+		if (is_top_sort(stacks))
 		{
 				shift_down(&stacks.a, stacks.size_a);
 				ft_putendl("rra");
@@ -61,6 +63,27 @@ int			main(int ac, char **av)
 		{
 			push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
 			ft_putendl("pb");
+			if (stacks.size_b > 1 && stacks.b[0] < stacks.b[1])
+			{
+				if (stacks.size_b == 2)
+				{
+					swap_int(&stacks.b[0], &stacks.b[1]);
+					ft_putendl("sb");
+				}
+				else
+				{
+					if (stacks.b[1] - stacks.b[0] < stacks.b[0] - stacks.b[stacks.size_b - 1])
+					{
+						swap_int(&stacks.b[0], &stacks.b[1]);
+						ft_putendl("sb");
+					}
+					else
+					{
+						shift_up(&stacks.b, stacks.size_b);
+						ft_putendl("rb");
+					}
+				}
+			}
 		}
 	}
 /*	while (stacks.size_a > 0)
@@ -111,6 +134,11 @@ int			main(int ac, char **av)
 	*/
 	while (stacks.size_b > 0)
 	{
+		if (stacks.size_b > 1 && stacks.b[0] < stacks.b[1])
+		{
+			swap_int(&stacks.b[0], &stacks.b[1]);
+			ft_putendl("sb");
+		}
 		push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
 		ft_putendl("pa");
 	}

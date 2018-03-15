@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:40:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/14 12:20:16 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/15 13:07:49 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int					*get_stack(int ac, char **av);
 int					is_sort(int *stack, int top_b, int size);
 int					find_index_in_b(int top, int *stack, int size);
 int					is_top_sort(t_stack stacks);
+int					is_stacks_sort(t_stack stacks);
 void				shift_down(int **stack, int size);
 void				print_stacks(t_stack stacks);
 void				swap_int(int *a, int *b);

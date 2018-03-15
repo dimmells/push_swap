@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:10:31 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/12 12:15:09 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/15 15:21:07 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void			push_to_top(int **a, int **b, int *size_a, int *size_b);
 void			shift_up(int **stack, int size);
 void			shift_down(int **stack, int size);
 void			ft_int_del(int **integer);
+int				is_no_dublicates(int *stack, int size);
 
 #endif

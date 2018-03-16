@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_stacks_sort.c                                   :+:      :+:    :+:   */
+/*   find_max_index.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/15 12:55:07 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/16 11:37:00 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/16 11:37:10 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/16 11:49:42 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int			is_stacks_sort(t_stack stacks)
+int			find_max_index(int *stack, int size)
 {
 	int		i;
-	int		prev;
+	int		max;
+	int		index;
 
-	prev = stacks.a[stacks.size_a - 1];
-	i = stacks.size_a - 2;
-	while (i >= 0)
+	max = stack[0];
+	index = 0;
+	i = 1;
+	while (i < size)
 	{
-		if (prev < stacks.a[i])
-			return (0);
-		prev = stacks.a[i];
-		i--;
-	}
-	if (stacks.size_b > 1)
-	{
-		i = 1;
-		while (i < stacks.size_b)
+		if (max < stack[i])
 		{
-			if (prev < stacks.b[i])
-				return (0);
-			i++;
+			max = stack[i];
+			index = i;
 		}
+		i++;
 	}
-	return (1);
+	return (index);
 }
-

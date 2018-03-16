@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/15 15:28:42 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/16 13:47:02 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int			main(int ac, char **av)
 	t_stack	stacks;
 	int		index;
 	int		steps;
-	int		tmp;
+	int		max;
+	int		i;
 
 	stacks.b = (int*)malloc(sizeof(int) * ac - 1);
 	stacks.a = get_stack(ac - 1, av);
@@ -51,9 +52,12 @@ int			main(int ac, char **av)
 		ft_putendl("sa");
 	}
 */
-	while (!is_stacks_sort(stacks))
+//	printf("is_sort=%d\n", is_stacks_sort(stacks));
+	while (1)
 	{
 //		print_stacks(stacks);
+		if (is_stacks_sort(stacks) && find_max_index(stacks.b, stacks.size_b) > 1)
+			break ;
 		if (is_top_sort(stacks))
 		{
 				shift_down(&stacks.a, stacks.size_a);
@@ -85,63 +89,40 @@ int			main(int ac, char **av)
 				}
 			}
 		}
-	}
-/*	while (stacks.size_a > 0)
-	{
-		print_stacks(stacks);
-		if (stacks.size_a > 1 && stacks.a[0] > stacks.a[1])
+		if (is_top_sort(stacks) && find_max_index(stacks.b, stacks.size_b) == 0)
 		{
-			swap_int(&stacks.a[0], &stacks.a[1]);
-			ft_putendl("sa");
-		}
-		if (min_index(stacks.a, stacks.size_a) == stacks.size_a - 1)
-		{
-			shift_down(&stacks.a, stacks.size_a);
-			ft_putendl("rra");
-		}
-//		print_stacks(stacks);
-		if (stacks.size_b > 0 && is_sort(stacks.a, stacks.b[0], stacks.size_a))
-			break ;
-		index = find_index_in_b(stacks.a[0], stacks.b, stacks.size_b);
-		if (index != 0)
-		{
-			tmp = stacks.size_b - index;
-			steps = tmp + 1;
-			if (tmp <= index)
-			{
-				while (tmp)
-				{
-					shift_down(&stacks.b, stacks.size_b);
-					ft_putendl("rrb");
-					tmp--;
-				}
-			}
-		}
-		push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
-		ft_putendl("pb");
-		if (stacks.size_b > 1)
-		{
-			if (stacks.b[0] < stacks.b[1])
-			{
-				if (stacks.b[0] < stacks.b[stacks.size_b - 1])
-				{
-					shift_up(&stacks.b, stacks.size_b);
-					ft_putendl("rb");
-				}
-			}
+			push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
+			ft_putendl("pa");
 		}
 	}
-	*/
 	while (stacks.size_b > 0)
 	{
+//		print_stacks(stacks);
 		if (stacks.size_b > 1 && stacks.b[0] < stacks.b[1])
 		{
 			swap_int(&stacks.b[0], &stacks.b[1]);
 			ft_putendl("sb");
 		}
-		push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
-		ft_putendl("pa");
+		if ((index = find_max_index(stacks.b, stacks.size_b)) == 0)
+		{
+			push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
+			ft_putendl("pa");
+		}
+		else
+		{
+			if (stacks.size_b / 2 > index)
+			{
+				shift_up(&stacks.b, stacks.size_b);
+				ft_putendl("rb");
+			}
+			else
+			{
+				shift_down(&stacks.b, stacks.size_b);
+				ft_putendl("rrb");
+			}
+		}
 	}
-//	print_stacks(stacks);
+//	printf("size=%d\n", stacks.size_a);
+//	print_stacks(stacks);	
 	return (0);
 }

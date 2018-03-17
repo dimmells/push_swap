@@ -6,29 +6,36 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:20:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/11 15:30:21 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/17 13:55:18 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void		push_to_top(int **a, int **b, int *size_a, int *size_b)
+#include "push_swap.h"
+
+void		push_to_top(t_number **a, t_number **b, int *size_a, int *size_b)
 {
 	int		i;
 	int		top;
+	int		mediana;
 
-	top = (*a)[0];
+	top = (*a)[0].num;
+	mediana = (*a)[0].mediana;
 	i = 0;
 	while (i < *size_a - 1)
 	{
-		(*a)[i] = (*a)[i + 1];
+		(*a)[i].num = (*a)[i + 1].num;
+		(*a)[i].mediana = (*a)[i + 1].mediana;
 		i++;
 	}
 	*size_a -= 1;
 	i = *size_b;
 	while (i > 0)
 	{
-		(*b)[i] = (*b)[i - 1];
+		(*b)[i].num = (*b)[i - 1].num;
+		(*b)[i].mediana = (*b)[i - 1].mediana;
 		i--;
 	}
-	(*b)[0] = top;
+	(*b)[0].num = top;
+	(*b)[0].mediana = mediana;
 	*size_b += 1;
 }

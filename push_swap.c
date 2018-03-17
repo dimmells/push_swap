@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/16 13:47:02 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/17 14:30:01 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,92 +37,56 @@ static int	min_index(int *stack, int size)
 int			main(int ac, char **av)
 {
 	t_stack	stacks;
-	int		index;
-	int		steps;
-	int		max;
+	int		mediana;
 	int		i;
+	int		size;
 
-	stacks.b = (int*)malloc(sizeof(int) * ac - 1);
+	stacks.b = (t_number*)malloc(sizeof(t_number) * ac - 1);
 	stacks.a = get_stack(ac - 1, av);
 	stacks.size_a = ac - 1;
 	stacks.size_b = 0;
-/*	if (stacks.size_a > 1 && stacks.a[0] > stacks.a[1])
+	while (stacks.size_a > 3)
 	{
-???		swap_int(&stacks.a[0], &stacks.a[1]);
-		ft_putendl("sa");
-	}
-*/
-//	printf("is_sort=%d\n", is_stacks_sort(stacks));
-	while (1)
-	{
-//		print_stacks(stacks);
-		if (is_stacks_sort(stacks) && find_max_index(stacks.b, stacks.size_b) > 1)
-			break ;
-		if (is_top_sort(stacks))
+		mediana = get_median(stacks, 'a');
+		size = stacks.size_a;
+		i = 0;
+		while (i < size)
 		{
-				shift_down(&stacks.a, stacks.size_a);
-				ft_putendl("rra");
-		}
-		if (!is_top_sort(stacks))
-		{
-			push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
-			ft_putendl("pb");
-			if (stacks.size_b > 1 && stacks.b[0] < stacks.b[1])
+			if ((stacks.a[0].num < mediana) || (stacks.a[0].num == mediana && size % 2 != 0))
 			{
-				if (stacks.size_b == 2)
-				{
-					swap_int(&stacks.b[0], &stacks.b[1]);
-					ft_putendl("sb");
-				}
-				else
-				{
-					if (stacks.b[1] - stacks.b[0] < stacks.b[0] - stacks.b[stacks.size_b - 1])
-					{
-						swap_int(&stacks.b[0], &stacks.b[1]);
-						ft_putendl("sb");
-					}
-					else
-					{
-						shift_up(&stacks.b, stacks.size_b);
-						ft_putendl("rb");
-					}
-				}
-			}
-		}
-		if (is_top_sort(stacks) && find_max_index(stacks.b, stacks.size_b) == 0)
-		{
-			push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
-			ft_putendl("pa");
-		}
-	}
-	while (stacks.size_b > 0)
-	{
-//		print_stacks(stacks);
-		if (stacks.size_b > 1 && stacks.b[0] < stacks.b[1])
-		{
-			swap_int(&stacks.b[0], &stacks.b[1]);
-			ft_putendl("sb");
-		}
-		if ((index = find_max_index(stacks.b, stacks.size_b)) == 0)
-		{
-			push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
-			ft_putendl("pa");
-		}
-		else
-		{
-			if (stacks.size_b / 2 > index)
-			{
-				shift_up(&stacks.b, stacks.size_b);
-				ft_putendl("rb");
+				stacks.a[0].mediana = mediana;
+				push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
+				ft_putendl("pb");
 			}
 			else
 			{
-				shift_down(&stacks.b, stacks.size_b);
-				ft_putendl("rrb");
+				shift_up(&stacks.a, stacks.size_a);
+				ft_putendl("ra");
+			}
+			i++;
+		}
+	}
+	while (!is_sort(stacks.a, stacks.size_a))
+	{
+		if (stacks.size_a == 2)
+		{
+			swap_int(&stacks.a[0].num, &stacks.a[1].num);
+			ft_putendl("sa");
+		}
+		else
+		{
+			if (stacks.a[0].num > stacks.a[1].num)
+			{
+				swap_int(&stacks.a[0].num, &stacks.a[1].num);
+    	        ft_putendl("sa");
+			}
+			else
+			{
+				shift_down(&stacks.a, stacks.size_a);
+				ft_putendl("rra");
 			}
 		}
 	}
-//	printf("size=%d\n", stacks.size_a);
-//	print_stacks(stacks);	
+	print_stacks(stacks);	
 	return (0);
 }

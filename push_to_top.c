@@ -6,18 +6,20 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:20:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/17 13:55:18 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/17 15:54:49 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <stdio.h>
 void		push_to_top(t_number **a, t_number **b, int *size_a, int *size_b)
 {
 	int		i;
 	int		top;
 	int		mediana;
 
+	if (*size_a == 0)
+		return ;
 	top = (*a)[0].num;
 	mediana = (*a)[0].mediana;
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:40:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/17 14:32:22 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/17 15:44:06 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int					is_sort(t_number *stack, int size);
 int					find_index_in_b(int top, int *stack, int size);
 int					is_top_sort(t_stack stacks);
 int					is_stacks_sort(t_stack stacks);
-int					find_max_index(int *stack, int size);
+int					find_max_index(t_number *stack, int size);
 int					get_median(t_stack stacks, char stack);
 void				shift_down(t_number **stack, int size);
 void				print_stacks(t_stack stacks);

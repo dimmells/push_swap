@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/17 16:24:12 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/18 13:30:35 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,29 @@ static int	min_index(int *stack, int size)
 	return (index);
 }
 
-static void	push_mediana(t_stack *stacks)
+static void	push_to_a(t_stack *stacks, int index)
 {
-	int		mediana;
-	int		i;
-
-	
+	if (index == 0)
+	{
+		push_to_top(&stacks->b, &stacks->a, &stacks->size_b, &stacks->size_a);
+		ft_putendl("pa");
+	}
+	else
+	{
+		while (find_max_index(stacks->b, stacks->size_b) != 0)
+		{
+			if (index < stacks->size_b / 2)
+			{
+				shift_up(&stacks->b, stacks->size_b);
+                ft_putendl("rb");
+			}
+			else
+			{
+				shift_down(&stacks->b, stacks->size_b);
+               	ft_putendl("rrb");
+			}
+		}
+	}
 }
 
 int			main(int ac, char **av)
@@ -49,8 +66,7 @@ int			main(int ac, char **av)
 	int		i;
 	int		size;
 	int		index;
-	int		rb;
-	int		rrb;
+	int		next_index;
 
 	stacks.b = (t_number*)malloc(sizeof(t_number) * ac - 1);
 	stacks.a = get_stack(ac - 1, av);
@@ -59,12 +75,13 @@ int			main(int ac, char **av)
 	while (stacks.size_a > 3)
 	{
 		mediana = get_median(stacks, 'a');
-		size = stacks.size_a;
-		i = 0;
-		while (i < size)
+		size = stacks.size_a / 2;
+		while (size)
 		{
 			if ((stacks.a[0].num < mediana) || (stacks.a[0].num == mediana && size % 2 != 0))
 			{
+				if (stacks.a[0].num < mediana)
+					size--;
 				stacks.a[0].mediana = mediana;
 				push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
 				ft_putendl("pb");
@@ -74,7 +91,6 @@ int			main(int ac, char **av)
 				shift_up(&stacks.a, stacks.size_a);
 				ft_putendl("ra");
 			}
-			i++;
 		}
 	}
 	while (!is_sort(stacks.a, stacks.size_a))
@@ -112,42 +128,8 @@ int			main(int ac, char **av)
 		else
 		{
 			index = find_max_index(stacks.b, stacks.size_b);
-			if (index == 0)
-			{
-				push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
-				ft_putendl("pa");
-			}
-			else if (index == stacks.size_b - 1)
-			{
-				shift_down(&stacks.b, stacks.size_b);
-                ft_putendl("rrb");
-				push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
-                ft_putendl("pa");
-			}
-			else if (index < stacks.size_b / 2)
-			{
-				while (find_max_index(stacks.b, stacks.size_b) != 0)
-				{
-					shift_up(&stacks.b, stacks.size_b);
-	                ft_putendl("rb");
-				}
-			}
-			else
-			{
-				while (find_max_index(stacks.b, stacks.size_b) != 0)
-				{
-					shift_down(&stacks.b, stacks.size_b);
-	                ft_putendl("rrb");
-				}
-			}
+			push_to_a(&stacks, index);
 		}
-/*		i = 0;
-		while (stacks.b[i].mediana == mediana)
-		{
-			push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
-			ft_putendl("pa");
-			i++;
-		}*/
 	}
 //	print_stacks(stacks);	
 	return (0);

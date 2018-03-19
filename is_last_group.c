@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_int_del.c                                       :+:      :+:    :+:   */
+/*   is_last_group.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/11 15:43:36 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/11 15:46:30 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/19 15:02:03 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/19 15:10:15 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "push_swap.h"
 
-void		ft_int_del(int **integer)
+int			is_last_group(t_stack stacks)
 {
-	if (integer)
+	int		i;
+	int		mediana;
+
+	mediana = stacks.b[0].mediana;
+	i = 1;
+	while (i < stacks.size_b)
 	{
-		free(*integer);
-		*integer = NULL;
+		if (mediana != stacks.b[i].mediana)
+			return (0);
+		i++;
 	}
+	return (1);
 }

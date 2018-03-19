@@ -6,17 +6,17 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:20:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/17 15:54:49 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/19 14:18:23 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-void		push_to_top(t_number **a, t_number **b, int *size_a, int *size_b)
+void			push_to_top(t_number **a, t_number **b, int *size_a, int *size_b)
 {
-	int		i;
-	int		top;
-	int		mediana;
+	int			i;
+	int			top;
+	int			mediana;
 
 	if (*size_a == 0)
 		return ;

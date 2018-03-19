@@ -6,13 +6,15 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:18:42 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/11 15:19:51 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/19 14:08:23 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void		swap_int(int *a, int *b)
+#include "push_swap.h"
+
+void			swap_int(t_number *a, t_number *b)
 {
-	int		tmp;
+	t_number	tmp;
 
 	tmp = *a;
 	*a = *b;

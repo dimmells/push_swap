@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_stack.c                                        :+:      :+:    :+:   */
+/*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/14 12:05:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/21 15:11:50 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/21 13:27:34 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/21 14:04:38 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_number		*get_stack(int ac, char **av, int begin)
+void		check_input(int ac, char **av, int begin)
 {
-	t_number	*stack;
-	int			i;
+	int		i;
+	int		sign;
 
-	stack = (t_number*)malloc(sizeof(t_number) * ac);
-	i = 0;
-	while (i < ac)
+	sign = 0;
+	while (av[begin])
 	{
-		stack[i].num = p_atoi(av[begin]);
-		stack[i].mediana = 0;
+		i = 0;
+		while (av[begin][i])
+		{
+			if (sign == 0 && (av[begin][i] == '-' || av[begin][i] == '+'))
+			{
+				sign = 1;
+				i++;
+			}
+			if (av[begin][i] && !ft_isdigit(av[begin][i]))
+			{
+				ft_putstr_fd("Error\n", 2);
+				exit(0);
+			}
+			i++;
+		}
 		begin++;
-		i++;
 	}
-	return (stack);
 }

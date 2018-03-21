@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_no_dublicates.c                                 :+:      :+:    :+:   */
+/*   check_dublicates.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/15 14:55:40 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/15 15:28:43 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/21 12:35:11 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/21 12:45:11 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int			is_no_dublicates(int *stack, int size)
+#include "push_swap.h"
+
+void		check_dublicates(t_stack stacks)
 {
 	int		i;
 	int		j;
-	int		current;
 
 	i = 0;
-	while (i < size)
+	while (i < stacks.size_a)
 	{
-		current = stack[0];
 		j = 0;
-		while (j < size)
+		while (j < stacks.size_a)
 		{
-			if (j == i)
-				j++;
-			if (current == stack[j])
-				return (0);
+			if (j != i)
+			{
+				if (stacks.a[i].num == stacks.a[j].num)
+				{
+					ft_putstr_fd("Error\n", 2);
+					exit(0);
+				}
+			}
 			j++;
 		}
 		i++;
 	}
-	return (1);
 }

@@ -6,65 +6,12 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/19 16:07:28 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/21 17:14:19 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-
-static int	min_index(int *stack, int size)
-{
-	int		i;
-	int		min;
-	int		index;
-
-	min = stack[0];
-	index = 0;
-	i = 1;
-	while(i < size)
-	{
-		if (min > stack[i])
-		{
-			min = stack[i];
-			index = i;
-		}
-		i++;
-	}
-	return (index);
-}
-
-static void	push_to_a(t_stack *stacks, int index)
-{
-	if (index == 0)
-	{
-		push_to_top(&stacks->b, &stacks->a, &stacks->size_b, &stacks->size_a);
-		ft_putendl("pa");
-	}
-	else
-	{
-		index = find_max_index(stacks->b, stacks->size_b);
-		while (index != 0)
-		{
-			if (index == 1)
-			{
-				swap_int(&stacks->b[0], &stacks->b[1]);
-   		        ft_putendl("sb");
-			}
-			else if (index < stacks->size_b / 2)
-			{
-				shift_up(&stacks->b, stacks->size_b);
-                ft_putendl("rb");
-			}
-			else
-			{
-				shift_down(&stacks->b, stacks->size_b);
-               	ft_putendl("rrb");
-			}
-			index = find_max_index(stacks->b, stacks->size_b);
-		}
-	}
-}
 
 static void sort_three(t_stack *stacks)
 {
@@ -75,7 +22,6 @@ static void sort_three(t_stack *stacks)
 	pa = 0;
 	while (!is_sort(stacks->a, stacks->size_a))
 	{
-//		print_stacks(*stacks);
 		if (stacks->a[1].num > stacks->a[0].num && stacks->a[1].num > stacks->a[2].num)
 		{
 			shift_up(&stacks->a, stacks->size_a);
@@ -99,31 +45,26 @@ static void sort_three(t_stack *stacks)
 			pa--;
 		}
 //		print_stacks(*stacks);
-//		printf("---------------------------\n");
 	}
 }
 
-int			main(int ac, char **av)
+int			sort(t_stack stacks)
 {
-	t_stack	stacks;
-	int		mediana;
 	int		i;
+	int		mediana;
 	int		size;
-	int		index;
 	int		rb;
 	int		pa;
 
-	stacks.b = (t_number*)malloc(sizeof(t_number) * ac - 1);
-	stacks.a = get_stack(ac - 1, av);
-	stacks.size_a = ac - 1;
-	stacks.size_b = 0;
+	if (is_sort(stacks.a, stacks.size_a) && stacks.size_b == 0)
+		return (1);
 	while (stacks.size_a > 3)
 	{
 		mediana = get_median(stacks, 'a');
 		i = 0;
 		while (i < stacks.size_a && stacks.a[0].mediana == stacks.a[i].mediana)
 			i++;
-		size = stacks.size_a / 2;
+		size = i / 2;
 		while (size)
 		{
 			if ((stacks.a[0].num < mediana) || (stacks.a[0].num == mediana && size % 2 != 0))
@@ -133,6 +74,8 @@ int			main(int ac, char **av)
 				stacks.a[0].mediana = mediana;
 				push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
 				ft_putendl("pb");
+				if (stacks.size_a == 3)
+					break ;
 			}
 			else
 			{
@@ -141,7 +84,7 @@ int			main(int ac, char **av)
 			}
 		}
 	}
-	while (!is_sort(stacks.a, stacks.size_a))
+	while (stacks.size_a <= 3 && !is_sort(stacks.a, stacks.size_a))
 	{
 		if (stacks.size_a == 2)
 		{
@@ -168,49 +111,115 @@ int			main(int ac, char **av)
 		i = 0;
 		while (i < stacks.size_b && stacks.b[i].mediana == mediana)
 			i++;
-		mediana = get_median(stacks, 'b');
-		size = i / 2;
-		if (i % 2 != 0)
-			size++;
-		pa = 0;
-		rb = 0;
-		while (size)
+		if (i == -3)
 		{
-			if (stacks.b[0].num >= mediana)
+//			print_stacks(stacks);
+			while (i)
 			{
-				if (stacks.b[0].num >= mediana)
-					size--;
-				stacks.b[0].mediana = mediana;
 				push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
 				ft_putendl("pa");
-				pa++;
+				i--;
 			}
-			else
-			{
-				shift_up(&stacks.b, stacks.size_b);
-				ft_putendl("rb");
-				rb++;
-			}
-		}
-		if (!is_last_group(stacks))
-			while (rb > 0)
-			{
-				shift_down(&stacks.b, stacks.size_b);
-				ft_putendl("rrb");
-				rb--;
-			}
-		if (pa > 3)
-		{
-			while (pa > 0)
-			{
-				push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
-				ft_putendl("pb");
-				pa--;
-			}
-		}
-		else if (stacks.size_a > 2)
 			sort_three(&stacks);
+			if (stacks.size_b == 0)
+				break ;
+			mediana = stacks.b[0].mediana;
+			i = 0;
+			while (i < stacks.size_b && stacks.b[i].mediana == mediana)
+				i++;
+		}
+		else
+		{
+			mediana = get_median(stacks, 'b');
+			size = i / 2;
+			if (i % 2 != 0)
+				size++;
+			pa = 0;
+			rb = 0;
+			while (size)
+			{
+				if (stacks.b[0].num >= mediana)
+				{
+					if (stacks.b[0].num >= mediana)
+						size--;
+					stacks.b[0].mediana = mediana;
+					push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
+					ft_putendl("pa");
+					pa++;
+				}
+				else
+				{
+					shift_up(&stacks.b, stacks.size_b);
+					ft_putendl("rb");
+					rb++;
+				}
+			}
+			if (!is_last_group(stacks))
+				while (rb > 0)
+				{
+					shift_down(&stacks.b, stacks.size_b);
+					ft_putendl("rrb");
+					rb--;
+				}
+			if (pa > 3)
+			{
+				while (pa > 3)
+				{
+					mediana = get_median(stacks, '2');
+					i = 0;
+					while (i < stacks.size_a && stacks.a[0].mediana == stacks.a[i].mediana)
+						i++;
+					size = i / 2;
+					rb = 0;
+					while (size)
+					{
+						if ((stacks.a[0].num < mediana) || (stacks.a[0].num == mediana && size % 2 != 0))
+						{
+							if (stacks.a[0].num < mediana)
+								size--;
+							stacks.a[0].mediana = mediana;
+							push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
+							ft_putendl("pb");
+							pa--;
+							if (pa == 3)
+								break ;
+						}
+						else
+						{
+							shift_up(&stacks.a, stacks.size_a);
+							ft_putendl("ra");
+							rb++;
+						}
+					}
+					while (rb)
+					{
+						shift_down(&stacks.a, stacks.size_a);
+						ft_putendl("rra");
+						rb--;
+					}
+				}	
+			}
+			if (stacks.size_a > 2)
+				sort_three(&stacks);
+		}
 	}
-//	print_stacks(stacks);
+	return (0);
+}
+
+int			main(int ac, char **av)
+{
+	t_stack	stacks;
+	int		begin;
+
+	if (ac == 1)
+		usage();
+	begin = get_flags(ac, av, &stacks);
+	check_input(ac, av, begin);
+	stacks.b = (t_number*)malloc(sizeof(t_number) * ac - begin);
+	stacks.a = get_stack(ac - begin, av, begin);
+	stacks.size_a = ac - begin;
+	stacks.size_b = 0;
+	check_dublicates(stacks);
+	sort(stacks);
 	return (0);
 }

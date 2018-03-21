@@ -6,11 +6,11 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 14:54:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/12 11:35:12 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/21 13:53:12 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 int		p_atoi(const char *str)
 {
@@ -37,5 +37,10 @@ int		p_atoi(const char *str)
 		return (0);
 	if (res > 9223372036854775807)
 		return (-1);
+	if ((res > 2147483648 && is_neg == -1) || (res > 2147483647 && is_neg == 1))
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(0);
+	}
 	return ((int)res * is_neg);
 }

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 12:35:11 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/21 12:45:11 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/22 15:20:40 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		check_dublicates(t_stack stacks)
 			{
 				if (stacks.a[i].num == stacks.a[j].num)
 				{
-					ft_putstr_fd("Error\n", 2);
+					print_error(1, stacks.flags);
 					exit(0);
 				}
 			}

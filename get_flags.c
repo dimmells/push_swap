@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 14:39:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/21 15:03:49 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/22 14:02:45 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int			get_flags(int ac, char **av, t_stack *stacks)
 	stacks->flags.v = 0;
 	stacks->flags.a = 0;
 	stacks->flags.e = 0;
+	stacks->flags.p = 0;
 	i = 1;
 	while (i < ac)
 	{
@@ -37,6 +38,8 @@ int			get_flags(int ac, char **av, t_stack *stacks)
 				stacks->flags.a = 1;
 			else if (j != 0 && av[i][j] == 'e')
 				stacks->flags.e = 1;
+			else if (j != 0 && av[i][j] == 'p')
+				stacks->flags.p = 1;
 			else
 				usage();
 			j++;

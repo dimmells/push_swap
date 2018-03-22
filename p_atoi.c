@@ -6,13 +6,13 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 14:54:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/21 13:53:12 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/22 15:19:55 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		p_atoi(const char *str)
+int		p_atoi(const char *str, t_flag flags)
 {
 	int					is_neg;
 	unsigned long long	res;
@@ -39,7 +39,7 @@ int		p_atoi(const char *str)
 		return (-1);
 	if ((res > 2147483648 && is_neg == -1) || (res > 2147483647 && is_neg == 1))
 	{
-		ft_putstr_fd("Error\n", 2);
+		print_error(3, flags);
 		exit(0);
 	}
 	return ((int)res * is_neg);

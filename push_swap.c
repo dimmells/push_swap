@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/22 15:21:22 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/22 15:52:48 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,7 @@ int				main(int ac, char **av)
 	command_list->command = NULL;
 	command_list->next = NULL;
 	sort(stacks, &command_list);
-//	print_command(stacks, command_list);
+	if (stacks.flags.s == 1)
+		print_stat(command_list);
 	return (0);
 }

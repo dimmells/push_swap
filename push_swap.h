@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:40:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/22 15:22:11 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/22 16:32:39 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct			s_flag
 	int					a;
 	int					e;
 	int					p;
+	int					s;
 }						t_flag;
 
 typedef struct			s_number
@@ -66,5 +67,6 @@ void					usage(void);
 void					print_command(t_stack stacks, char *command);
 void					add_command(t_command **command_list, char *command, t_stack stacks);
 void					print_error(int error_code, t_flag flags);
+void					print_stat(t_command *command_list);
 
 #endif

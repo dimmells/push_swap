@@ -6,13 +6,14 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 12:28:03 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 13:53:56 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/23 16:16:38 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void			add_command(t_command **command_list, char *command, t_stack stacks)
+void			add_command(t_command **command_list,
+		char *command, t_stack stacks)
 {
 	t_command	*tmp;
 	t_command	*new;

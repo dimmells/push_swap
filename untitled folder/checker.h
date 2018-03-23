@@ -6,15 +6,15 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:10:31 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:08:04 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/23 15:56:30 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 # include <stdlib.h>
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
+# include "src/libft/libft.h"
+# include "src/gnl/get_next_line.h"
 
 typedef	struct			s_flag
 {

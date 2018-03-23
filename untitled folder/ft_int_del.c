@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stacks.c                                     :+:      :+:    :+:   */
+/*   ft_int_del.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 12:15:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:30:31 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/11 15:43:36 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/11 15:46:30 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
 
-void		print_stacks(t_stack stacks)
+void		ft_int_del(int **integer)
 {
-	int		i;
-
-	ft_putstr("--------\nSTACK A\n");
-	i = 0;
-	while (i < stacks.size_a)
+	if (integer)
 	{
-		ft_putnbr(stacks.a[i].num);
-		ft_putstr("\n");
-		i++;
+		free(*integer);
+		*integer = NULL;
 	}
-	ft_putstr("--------\nSTACK B\n");
-	i = 0;
-	while (i < stacks.size_b)
-	{
-		ft_putnbr(stacks.b[i].num);
-		ft_putstr("\n");
-		i++;
-	}
-	ft_putstr("--------\n");
 }

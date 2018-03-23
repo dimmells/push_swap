@@ -6,11 +6,11 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 14:54:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:27:20 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/23 15:50:44 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 int		p_atoi(const char *str, t_flag flags)
 {

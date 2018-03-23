@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stacks.c                                     :+:      :+:    :+:   */
+/*   check_dublicates.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 12:15:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:30:31 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/21 12:35:11 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/23 13:04:08 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void		print_stacks(t_stack stacks)
+void		check_dublicates(t_stack stacks)
 {
 	int		i;
+	int		j;
 
-	ft_putstr("--------\nSTACK A\n");
 	i = 0;
 	while (i < stacks.size_a)
 	{
-		ft_putnbr(stacks.a[i].num);
-		ft_putstr("\n");
+		j = 0;
+		while (j < stacks.size_a)
+		{
+			if (j != i)
+			{
+				if (stacks.a[i] == stacks.a[j])
+				{
+					print_error(1, stacks.flags);
+					exit(0);
+				}
+			}
+			j++;
+		}
 		i++;
 	}
-	ft_putstr("--------\nSTACK B\n");
-	i = 0;
-	while (i < stacks.size_b)
-	{
-		ft_putnbr(stacks.b[i].num);
-		ft_putstr("\n");
-		i++;
-	}
-	ft_putstr("--------\n");
 }

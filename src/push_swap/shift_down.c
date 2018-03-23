@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:37:41 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/19 14:00:41 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/23 16:33:23 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void			shift_down(t_number **stack, int size)
 	last_num = (*stack)[size - 1].num;
 	last_mediana = (*stack)[size - 1].mediana;
 	i = size - 1;
-    while (i > 0)
-    {
+	while (i > 0)
+	{
 		(*stack)[i].num = (*stack)[i - 1].num;
 		(*stack)[i].mediana = (*stack)[i - 1].mediana;
 		i--;

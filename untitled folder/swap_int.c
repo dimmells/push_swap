@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stacks.c                                     :+:      :+:    :+:   */
+/*   swap_int.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 12:15:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:30:31 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/11 15:18:42 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/11 15:19:51 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void		print_stacks(t_stack stacks)
+void		swap_int(int *a, int *b)
 {
-	int		i;
+	int		tmp;
 
-	ft_putstr("--------\nSTACK A\n");
-	i = 0;
-	while (i < stacks.size_a)
-	{
-		ft_putnbr(stacks.a[i].num);
-		ft_putstr("\n");
-		i++;
-	}
-	ft_putstr("--------\nSTACK B\n");
-	i = 0;
-	while (i < stacks.size_b)
-	{
-		ft_putnbr(stacks.b[i].num);
-		ft_putstr("\n");
-		i++;
-	}
-	ft_putstr("--------\n");
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

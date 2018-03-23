@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stacks.c                                     :+:      :+:    :+:   */
+/*   shift_down.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 12:15:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:30:31 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/11 15:37:41 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/23 15:52:43 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void		print_stacks(t_stack stacks)
+void		shift_down(int **stack, int size)
 {
 	int		i;
+	int		last;
 
-	ft_putstr("--------\nSTACK A\n");
-	i = 0;
-	while (i < stacks.size_a)
+	last = (*stack)[size - 1];
+	i = size;
+	while (i > 0)
 	{
-		ft_putnbr(stacks.a[i].num);
-		ft_putstr("\n");
-		i++;
+		(*stack)[i] = (*stack)[i - 1];
+		i--;
 	}
-	ft_putstr("--------\nSTACK B\n");
-	i = 0;
-	while (i < stacks.size_b)
-	{
-		ft_putnbr(stacks.b[i].num);
-		ft_putstr("\n");
-		i++;
-	}
-	ft_putstr("--------\n");
+	(*stack)[0] = last;
 }

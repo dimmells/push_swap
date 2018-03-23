@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 13:27:34 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/22 15:41:22 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/23 16:17:12 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void		check_input(int ac, char **av, int begin, t_flag flags)
 		i = 0;
 		while (av[begin][i])
 		{
-			if (i == 0 && sign == 0 && av[begin][1] && (av[begin][i] == '-' || av[begin][i] == '+'))
+			if (i == 0 && sign == 0 && av[begin][1] && (av[begin][i] == '-' ||
+						av[begin][i] == '+'))
 			{
 				sign = 1;
 				i++;

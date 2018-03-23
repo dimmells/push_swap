@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stacks.c                                     :+:      :+:    :+:   */
+/*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 12:15:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:30:31 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/21 13:27:34 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/23 15:11:03 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void		print_stacks(t_stack stacks)
+void		check_input(int ac, char **av, int begin, t_flag flags)
 {
 	int		i;
+	int		sign;
 
-	ft_putstr("--------\nSTACK A\n");
-	i = 0;
-	while (i < stacks.size_a)
+	sign = 0;
+	while (av[begin])
 	{
-		ft_putnbr(stacks.a[i].num);
-		ft_putstr("\n");
-		i++;
+		i = 0;
+		while (av[begin][i])
+		{
+			if (i == 0 && sign == 0 && av[begin][1] && (av[begin][i] == '-' ||
+						av[begin][i] == '+'))
+			{
+				sign = 1;
+				i++;
+			}
+			if (av[begin][i] && !ft_isdigit(av[begin][i]))
+			{
+				print_error(2, flags);
+				exit(0);
+			}
+			i++;
+		}
+		begin++;
 	}
-	ft_putstr("--------\nSTACK B\n");
-	i = 0;
-	while (i < stacks.size_b)
-	{
-		ft_putnbr(stacks.b[i].num);
-		ft_putstr("\n");
-		i++;
-	}
-	ft_putstr("--------\n");
 }

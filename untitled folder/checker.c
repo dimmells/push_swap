@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 11:12:32 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:13:35 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/23 15:44:55 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,6 @@ int				main(int ac, char **av)
 	stacks.size_a = ac - begin;
 	stacks.size_b = 0;
 	check_dublicates(stacks);
-	command_list = (t_command*)malloc(sizeof(t_command));
-    command_list->command = NULL;
-    command_list->next = NULL;
-	head = command_list;
 	read_and_execute(&stacks, &command_list);
 	ft_int_del(&stacks.a);
 	ft_int_del(&stacks.b);

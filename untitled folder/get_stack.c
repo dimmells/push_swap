@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stacks.c                                     :+:      :+:    :+:   */
+/*   get_stack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 12:15:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:30:31 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/23 12:40:46 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/23 15:49:38 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void		print_stacks(t_stack stacks)
+int			*get_stack(int ac, char **av, int begin, t_flag flags)
 {
+	int		*stack;
 	int		i;
 
-	ft_putstr("--------\nSTACK A\n");
+	stack = (int*)malloc(sizeof(int) * ac);
 	i = 0;
-	while (i < stacks.size_a)
+	while (i < ac)
 	{
-		ft_putnbr(stacks.a[i].num);
-		ft_putstr("\n");
+		stack[i] = p_atoi(av[begin], flags);
+		begin++;
 		i++;
 	}
-	ft_putstr("--------\nSTACK B\n");
-	i = 0;
-	while (i < stacks.size_b)
-	{
-		ft_putnbr(stacks.b[i].num);
-		ft_putstr("\n");
-		i++;
-	}
-	ft_putstr("--------\n");
+	return (stack);
 }

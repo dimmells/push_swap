@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stacks.c                                     :+:      :+:    :+:   */
+/*   add_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 12:15:50 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:30:31 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/22 12:28:03 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/23 14:19:47 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void		print_stacks(t_stack stacks)
+void			add_command(t_command **command_list, char *command)
 {
-	int		i;
+	t_command	*tmp;
+	t_command	*new;
 
-	ft_putstr("--------\nSTACK A\n");
-	i = 0;
-	while (i < stacks.size_a)
+	new = (t_command*)malloc(sizeof(t_command));
+	new->command = ft_strdup(command);
+	new->next = NULL;
+	if (*command_list)
 	{
-		ft_putnbr(stacks.a[i].num);
-		ft_putstr("\n");
-		i++;
+		tmp = *command_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
-	ft_putstr("--------\nSTACK B\n");
-	i = 0;
-	while (i < stacks.size_b)
-	{
-		ft_putnbr(stacks.b[i].num);
-		ft_putstr("\n");
-		i++;
-	}
-	ft_putstr("--------\n");
+	else
+		tmp = new;
 }

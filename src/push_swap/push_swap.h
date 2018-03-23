@@ -6,13 +6,13 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:40:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/22 16:32:39 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/23 13:28:03 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "src/libft/libft.h"
+# include "../libft/libft.h"
 # include <stdlib.h>
 
 typedef struct			s_flag

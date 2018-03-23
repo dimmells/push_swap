@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_max_index.c                                   :+:      :+:    :+:   */
+/*   shift_down.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/16 11:37:10 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/18 13:29:27 by dmelnyk          ###   ########.fr       */
+/*   Created: 2018/03/11 15:37:41 by dmelnyk           #+#    #+#             */
+/*   Updated: 2018/03/23 15:52:43 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int			find_max_index(t_number *stack, int size)
+void		shift_down(int **stack, int size)
 {
 	int		i;
-	int		max;
-	int		index;
+	int		last;
 
-	max = stack[0].num;
-	index = 0;
-	i = 1;
-	while (i < size)
+	last = (*stack)[size - 1];
+	i = size;
+	while (i > 0)
 	{
-		if (max < stack[i].num)
-		{
-			max = stack[i].num;
-			index = i;
-		}
-		i++;
+		(*stack)[i] = (*stack)[i - 1];
+		i--;
 	}
-	return (index);
+	(*stack)[0] = last;
 }

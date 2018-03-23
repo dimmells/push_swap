@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 12:04:20 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/22 15:43:51 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/23 14:08:12 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void		print_command(t_stack stacks, char *command)
 	}
 	else
 		ft_putendl(command);
-	if (stacks.flags.v == 1 && stacks.flags.p == 1 && is_sort(stacks.a, stacks.size_a) && stacks.size_b == 0)
+	if (stacks.flags.v == 1 && stacks.flags.p == 1 &&
+			is_sort(stacks.a, stacks.size_a) && stacks.size_b == 0)
 	{
 		ft_putstr("\033[0;32m");
 		print_stacks(stacks);

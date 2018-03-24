@@ -6,23 +6,18 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/24 13:47:55 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 17:56:33 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int				sort(t_stack stacks, t_command **command_list)
 {
 	int			i;
-	int			mediana;
 	int			size;
-	int			rb;
-	int			pa;
+	int			mediana;
 
-	if (is_sort(stacks.a, stacks.size_a) && stacks.size_b == 0)
-		return (1);
 	while (stacks.size_a > 3)
 	{
 		mediana = get_median(stacks, 'a');
@@ -30,124 +25,10 @@ int				sort(t_stack stacks, t_command **command_list)
 		while (i < stacks.size_a && stacks.a[0].mediana == stacks.a[i].mediana)
 			i++;
 		size = i / 2;
-		while (size)
-		{
-			if ((stacks.a[0].num < mediana) || (stacks.a[0].num == mediana && size % 2 != 0))
-			{
-				if (stacks.a[0].num < mediana)
-					size--;
-				stacks.a[0].mediana = mediana;
-				push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
-				add_command(command_list, "pb", stacks);
-				if (stacks.size_a == 3)
-					break ;
-			}
-			else
-			{
-				shift_up(&stacks.a, stacks.size_a);
-				add_command(command_list, "ra", stacks);
-			}
-		}
+		push_to_b(&stacks, command_list, size, mediana);
 	}
 	sort_three(&stacks, command_list);
-	while (stacks.size_b > 0)
-	{
-		mediana = stacks.b[0].mediana;
-		i = 0;
-		while (i < stacks.size_b && stacks.b[i].mediana == mediana)
-			i++;
-/*		if (i == -3)
-		{
-//			print_stacks(stacks);
-			while (i)
-			{
-				push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
-				add_command(command_list, "pa", stacks);
-				i--;
-			}
-			sort_three(&stacks, command_list);
-			if (stacks.size_b == 0)
-				break ;
-			mediana = stacks.b[0].mediana;
-			i = 0;
-			while (i < stacks.size_b && stacks.b[i].mediana == mediana)
-				i++;
-		}
-		else
-		{*/
-			mediana = get_median(stacks, 'b');
-			size = i / 2;
-			if (i % 2 != 0)
-				size++;
-			pa = 0;
-			rb = 0;
-			while (size)
-			{
-				if (stacks.b[0].num >= mediana)
-				{
-					if (stacks.b[0].num >= mediana)
-						size--;
-					stacks.b[0].mediana = mediana;
-					push_to_top(&stacks.b, &stacks.a, &stacks.size_b, &stacks.size_a);
-					add_command(command_list, "pa", stacks);
-					pa++;
-				}
-				else
-				{
-					shift_up(&stacks.b, stacks.size_b);
-					add_command(command_list, "rb", stacks);
-					rb++;
-				}
-			}
-			if (!is_last_group(stacks))
-				while (rb > 0)
-				{
-					shift_down(&stacks.b, stacks.size_b);
-					add_command(command_list, "rrb", stacks);
-					rb--;
-				}
-			if (pa > 3)
-			{
-				while (pa > 3)
-				{
-					mediana = get_median(stacks, '2');
-					i = 0;
-					while (i < stacks.size_a && stacks.a[0].mediana == stacks.a[i].mediana)
-						i++;
-					size = i / 2;
-					rb = 0;
-					while (size)
-					{
-						if ((stacks.a[0].num < mediana) || (stacks.a[0].num == mediana && size % 2 != 0))
-						{
-							if (stacks.a[0].num < mediana)
-								size--;
-							stacks.a[0].mediana = mediana;
-							push_to_top(&stacks.a, &stacks.b, &stacks.size_a, &stacks.size_b);
-							add_command(command_list, "pb", stacks);
-							pa--;
-							if (pa == 3)
-								break ;
-						}
-						else
-						{
-							shift_up(&stacks.a, stacks.size_a);
-							add_command(command_list, "ra", stacks);
-							rb++;
-						}
-					}
-					while (rb)
-					{
-						shift_down(&stacks.a, stacks.size_a);
-						add_command(command_list, "rra", stacks);
-						rb--;
-					}
-				}	
-			}
-			if (stacks.size_a > 2)
-				sort_three(&stacks, command_list);
-//		}
-	}
+	while_b_not_empty(&stacks, command_list);
 	return (0);
 }
 
@@ -160,7 +41,9 @@ int				main(int ac, char **av)
 	if (ac == 1)
 		usage();
 	begin = get_flags(ac, av, &stacks);
-	check_input(ac, av, begin, stacks.flags);
+	if (ac - begin == 0)
+		usage();
+	check_input(av, begin, stacks.flags);
 	stacks.b = (t_number*)malloc(sizeof(t_number) * ac - begin);
 	stacks.a = get_stack(ac - begin, av, begin, stacks.flags);
 	stacks.size_a = ac - begin;
@@ -169,6 +52,8 @@ int				main(int ac, char **av)
 	command_list = (t_command*)malloc(sizeof(t_command));
 	command_list->command = NULL;
 	command_list->next = NULL;
+	if (is_sort(stacks.a, stacks.size_a) && stacks.size_b == 0)
+		return (1);
 	sort(stacks, &command_list);
 	if (stacks.flags.s == 1)
 		print_stat(command_list);

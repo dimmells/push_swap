@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 15:52:57 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/24 13:10:54 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:05:58 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ static void		print_info(int commands[], t_command *command_list)
 {
 	int			total;
 
+	total = 0;
 	total = count(commands, command_list, total);
 	ft_putendl("\033[0;36m ********************************************** ");
 	ft_putstr("         \033[0;33m (╯°□°)╯︵ \033[0;36mSTATISTICS \033[0;33m");
@@ -116,7 +117,6 @@ static void		print_info(int commands[], t_command *command_list)
 void			print_stat(t_command *command_list)
 {
 	int			commands[11];
-	int			i;
 
 	print_info(commands, command_list);
 	ft_putstr("\033[0m");

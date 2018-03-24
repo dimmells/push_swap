@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 12:37:29 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/24 11:45:47 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:05:09 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int	copy(t_number *stack, int size)
 
 int			get_median(t_stack stacks, char stack)
 {
-	int		*a;
 	int		mediana;
 	int		i;
 

@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:10:31 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:08:04 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:15:17 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void					shift_up(int **stack, int size);
 void					shift_down(int **stack, int size);
 void					ft_int_del(int **integer);
 void					print_error(int error_code, t_flag flags);
-void					check_input(int ac, char **av, int begin, t_flag flags);
+void					check_input(char **av, int begin, t_flag flags);
 void					check_dublicates(t_stack stacks);
 void					usage(void);
 void					add_command(t_command **command_list, char *command);

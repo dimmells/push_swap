@@ -6,13 +6,13 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 14:39:24 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/24 11:30:42 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:04:52 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void		detect_flag(int i, int ac, char **av, t_stack *stacks)
+static void		detect_flag(int i, char **av, t_stack *stacks)
 {
 	int			j;
 
@@ -40,7 +40,6 @@ static void		detect_flag(int i, int ac, char **av, t_stack *stacks)
 int				get_flags(int ac, char **av, t_stack *stacks)
 {
 	int			i;
-	int			j;
 
 	stacks->flags.c = 0;
 	stacks->flags.v = 0;
@@ -54,7 +53,7 @@ int				get_flags(int ac, char **av, t_stack *stacks)
 		if ((av[i][0] && av[i][0] != '-') || (av[i][0] && av[i][0] == '-' &&
 				av[i][1] && ft_isdigit(av[i][1])))
 			break ;
-		detect_flag(i, ac, av, stacks);
+		detect_flag(i, av, stacks);
 		i++;
 	}
 	return (i);

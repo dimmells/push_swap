@@ -6,13 +6,13 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 13:27:34 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 15:11:03 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:15:13 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void		check_input(int ac, char **av, int begin, t_flag flags)
+void		check_input(char **av, int begin, t_flag flags)
 {
 	int		i;
 	int		sign;

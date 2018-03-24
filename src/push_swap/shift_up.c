@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:31:54 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/19 13:56:16 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 11:38:24 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		shift_up(t_number **stack, int size)
 {
-	int     i;
+	int		i;
 	int		top_num;
 	int		top_mediana;
 

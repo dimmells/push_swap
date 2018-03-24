@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 12:37:29 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/21 12:17:21 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 11:45:47 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,14 @@ static int	copy(t_number *stack, int size)
 	i = 0;
 	while (i < size - 1)
 	{
-		j = i + 1;
-		while (j < size)
-		{
+		j = i;
+		while (++j < size)
 			if (ret[i] > ret[j])
 			{
 				tmp = ret[i];
 				ret[i] = ret[j];
 				ret[j] = tmp;
 			}
-			j++;
-		}
 		i++;
 	}
 	return (ret[size / 2]);

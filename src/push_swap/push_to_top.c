@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 15:20:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:32:39 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 11:28:11 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ void		push_to_top(t_number **a, t_number **b, int *size_a, int *size_b)
 		return ;
 	top = (*a)[0].num;
 	mediana = (*a)[0].mediana;
-	i = 0;
-	while (i < *size_a - 1)
+	i = -1;
+	while (++i < *size_a - 1)
 	{
 		(*a)[i].num = (*a)[i + 1].num;
 		(*a)[i].mediana = (*a)[i + 1].mediana;
-		i++;
 	}
 	*size_a -= 1;
 	i = *size_b;

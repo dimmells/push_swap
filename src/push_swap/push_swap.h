@@ -6,7 +6,7 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:40:22 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 13:28:03 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:20:45 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void					print_command(t_stack stacks, char *command);
 void					add_command(t_command **command_list, char *command, t_stack stacks);
 void					print_error(int error_code, t_flag flags);
 void					print_stat(t_command *command_list);
+void					sort_three(t_stack *stacks, t_command **command_list);
 
 #endif

@@ -6,79 +6,20 @@
 /*   By: dmelnyk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 11:38:38 by dmelnyk           #+#    #+#             */
-/*   Updated: 2018/03/23 16:13:37 by dmelnyk          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:47:55 by dmelnyk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-static void sort_three(t_stack *stacks, t_command **command_list)
+int				sort(t_stack stacks, t_command **command_list)
 {
-	int		pa;
-
-	if (stacks->size_a < 3)
-		return ;
-	pa = 0;
-	while (!is_sort(stacks->a, stacks->size_a))
-	{
-		if (stacks->a[1].num > stacks->a[0].num && stacks->a[1].num > stacks->a[2].num)
-		{
-			shift_up(&stacks->a, stacks->size_a);
-			add_command(command_list, "ra", *stacks);
-			pa++;
-		}
-		if (stacks->a[0].num > stacks->a[1].num && stacks->a[0].num > stacks->a[2].num)
-		{
-			swap_int(&stacks->a[0], &stacks->a[1]);
-			add_command(command_list, "sa", *stacks);
-		}
-		if (stacks->a[0].num > stacks->a[1].num)
-		{
-			swap_int(&stacks->a[0], &stacks->a[1]);
-	        add_command(command_list, "sa", *stacks);
-		}
-		if (pa)
-		{
-			shift_down(&stacks->a, stacks->size_a);
-			add_command(command_list, "rra", *stacks);
-			pa--;
-		}
-	}
-}
-
-static void	sort_only_three(t_stack *stacks, t_command **command_list)
-{
-	while (stacks->size_a <= 3 && !is_sort(stacks->a, stacks->size_a))
-	{
-		if (stacks->size_a == 2)
-		{
-			swap_int(&stacks->a[0], &stacks->a[1]);
-			add_command(command_list, "sa", *stacks);
-		}
-		else if (stacks->size_a > 1)
-		{
-			if (stacks->a[0].num > stacks->a[1].num)
-			{
-				swap_int(&stacks->a[0], &stacks->a[1]);
-				add_command(command_list, "sa", *stacks);
-			}
-			else
-			{
-				shift_down(&stacks->a, stacks->size_a);
-				add_command(command_list, "rra", *stacks);
-			}
-		}
-	}
-}
-
-int			sort(t_stack stacks, t_command **command_list)
-{
-	int		i;
-	int		mediana;
-	int		size;
-	int		rb;
-	int		pa;
+	int			i;
+	int			mediana;
+	int			size;
+	int			rb;
+	int			pa;
 
 	if (is_sort(stacks.a, stacks.size_a) && stacks.size_b == 0)
 		return (1);
@@ -108,14 +49,14 @@ int			sort(t_stack stacks, t_command **command_list)
 			}
 		}
 	}
-	sort_only_three(&stacks, command_list);
+	sort_three(&stacks, command_list);
 	while (stacks.size_b > 0)
 	{
 		mediana = stacks.b[0].mediana;
 		i = 0;
 		while (i < stacks.size_b && stacks.b[i].mediana == mediana)
 			i++;
-		if (i == -3)
+/*		if (i == -3)
 		{
 //			print_stacks(stacks);
 			while (i)
@@ -127,13 +68,13 @@ int			sort(t_stack stacks, t_command **command_list)
 			sort_three(&stacks, command_list);
 			if (stacks.size_b == 0)
 				break ;
-/*			mediana = stacks.b[0].mediana;
+			mediana = stacks.b[0].mediana;
 			i = 0;
 			while (i < stacks.size_b && stacks.b[i].mediana == mediana)
-				i++;*/
+				i++;
 		}
 		else
-		{
+		{*/
 			mediana = get_median(stacks, 'b');
 			size = i / 2;
 			if (i % 2 != 0)
@@ -205,7 +146,7 @@ int			sort(t_stack stacks, t_command **command_list)
 			}
 			if (stacks.size_a > 2)
 				sort_three(&stacks, command_list);
-		}
+//		}
 	}
 	return (0);
 }
